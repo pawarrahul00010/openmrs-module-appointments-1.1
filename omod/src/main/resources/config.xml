@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+	
+	<!-- Base Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${MODULE_PACKAGE}</package>
+	<description>${project.parent.description}</description>
+
+	<activator>${MODULE_PACKAGE}.AppointmentsActivator</activator>
+
+	<require_modules>
+		<require_module>org.openmrs.module.webservices.rest</require_module>
+		<require_module version="${openmrsAtomfeedVersion}">org.ict4h.openmrs.openmrs-atomfeed</require_module>
+	</require_modules>
+
+	<mappingFiles>
+		Speciality.hbm.xml
+		AppointmentService.hbm.xml
+		ServiceWeeklyAvailability.hbm.xml
+		Appointment.hbm.xml
+		AppointmentAudit.hbm.xml
+		AppointmentServiceType.hbm.xml
+		AppointmentPatient.hbm.xml
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with @MODULE_ID@.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+	<advice>
+		<point>org.openmrs.module.appointments.service.AppointmentServiceService</point>
+		<class>org.openmrs.module.appointments.advice.AppointmentServiceAdvice</class>
+	</advice>
+
+	<advice>
+		<point>org.openmrs.module.appointments.service.AppointmentsService</point>
+		<class>org.openmrs.module.appointments.advice.AppointmentAdvice</class>
+	</advice>
+
+	<globalProperty>
+		<property>disableDefaultAppointmentValidations</property>
+		<defaultValue>false</defaultValue>
+		<description>Disable default appointment validations</description>
+	</globalProperty>
+	<globalProperty>
+		<property>SchedulerMarksComplete</property>
+		<defaultValue>false</defaultValue>
+		<description>Scheduler marks checked in appointments as complete when it turned on</description>
+	</globalProperty>
+	<globalProperty>
+		<property>SchedulerMarksMissed</property>
+		<defaultValue>false</defaultValue>
+		<description>Scheduler marks scheduled appointments as missed when it is turned on</description>
+	</globalProperty>
+	
+</module>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="org.openmrs.module.appointments.model">
+    <class name="AppointmentPatient" table="appointment_patient" batch-size="50">
+        <id name="patientId" type="java.lang.Integer" column="patient_id">
+            <generator class="native">
+                <param name="sequence">patient_id_seq</param>
+            </generator>
+        </id>
+        <property name="firstName" type="java.lang.String" column="first_name"/>
+        <property name="lastName" type="java.lang.String" column="last_name"/>
+        <property name="dateCreated" type="java.util.Date" column="date_created"/>
+        <property name="dateChanged" type="java.util.Date" column="date_changed"/>
+        <property name="uuid" type="java.lang.String" column="uuid"/>
+        <many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />
+        <many-to-one name="creator" class="org.openmrs.User" column="creator"/>
+    </class>
+</hibernate-mapping>
