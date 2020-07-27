@@ -27,7 +27,7 @@
 
         </sql>
     </changeSet>
-    <changeSet id="create-appointment_patient_table-202007071131" author="Rahul">
+    <changeSet id="create-appointment_patient_table-202007241131" author="Rahul">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="appointment_patient" />
@@ -237,7 +237,7 @@
             ADD COLUMN color varchar(8) NULL AFTER duration_mins;
         </sql>
     </changeSet>
-    <changeSet id="add_appointmentPatient_id_to_appointment_patient-202007091107" author="Rahul">
+    <changeSet id="add_appointmentPatient_id_to_appointment_patient-202007250955" author="Rahul">
         <preConditions onFail="MARK_RAN">
             <not>
                 <columnExists columnName="appointmentpatient_id" tableName="patient_appointment"/>
@@ -247,16 +247,27 @@
             ALTER TABLE patient_appointment
             ADD COLUMN appointmentpatient_id INT NULL AFTER comments,
             ADD CONSTRAINT fk_patient_appointment_appointment_patient FOREIGN KEY (`appointmentpatient_id`)
-            REFERENCES appointment_patient (`patient_id`);
+            REFERENCES appointment_patient (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE;
         </sql>
     </changeSet>
-    <changeSet id="set_patient_id_null_in_appointment_patient_table-202007091134" author="Rahul">
+    <changeSet id="add_mobile_number_to_appointment_patient-202007231522" author="Rahul">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists columnName="mobile_number" tableName="appointment_patient"/>
+            </not>
+        </preConditions>
+        <sql>
+            ALTER TABLE appointment_patient
+            ADD COLUMN mobile_number VARCHAR(255) NULL AFTER last_name;
+        </sql>
+    </changeSet>
+    <changeSet id="set_patient_id_null_in_appointment_patient_table-202007241134" author="Rahul">
         <dropNotNullConstraint 
             columnDataType="int"  
             columnName="patient_id"    
             tableName="patient_appointment"/> 
     </changeSet>
-    <changeSet id="set_creator_null_in_appointment_patient_table-202007091242" author="Rahul">
+    <changeSet id="set_creator_null_in_appointment_patient_table-202007241242" author="Rahul">
         <dropNotNullConstraint 
             columnDataType="int"  
             columnName="creator"    

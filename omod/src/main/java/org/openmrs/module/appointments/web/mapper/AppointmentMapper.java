@@ -166,6 +166,7 @@ public class AppointmentMapper {
         map.put("name", p.getPersonName().getFullName());
         map.put("uuid", p.getUuid());
         map.put("identifier", p.getPatientIdentifier().getIdentifier());
+        map.put("mobileNumber", p.getAttribute("phoneNumber") == null ? null : p.getAttribute("phoneNumber").getValue());
         return map;
     }
     
@@ -174,6 +175,7 @@ public class AppointmentMapper {
         map.put("name", p.getFirstName()+" "+p.getLastName());
         map.put("uuid", p.getUuid());
         map.put("identifier", "0000");
+        map.put("mobileNumber", p.getMobileNumber());
         return map;
     }
     

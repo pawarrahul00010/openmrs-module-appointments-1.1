@@ -7,6 +7,7 @@ public class AppointmentPatient extends BaseOpenmrsData {
     private Integer patientId;
     private String firstName;
     private String lastName;
+    private String mobileNumber;
 
     public User getCreator() {
         return creator;
@@ -48,4 +49,14 @@ public class AppointmentPatient extends BaseOpenmrsData {
     public void setId(Integer id) {
         setPatientId(id);
     }
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+    
+    
 }

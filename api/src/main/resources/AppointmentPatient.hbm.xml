@@ -11,6 +11,7 @@
         </id>
         <property name="firstName" type="java.lang.String" column="first_name"/>
         <property name="lastName" type="java.lang.String" column="last_name"/>
+        <property name="mobileNumber" type="java.lang.String" column="mobile_number"/>
         <property name="dateCreated" type="java.util.Date" column="date_created"/>
         <property name="dateChanged" type="java.util.Date" column="date_changed"/>
         <property name="uuid" type="java.lang.String" column="uuid"/>
